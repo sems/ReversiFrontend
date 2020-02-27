@@ -7,9 +7,9 @@ module.exports = {
         ],
         jsOrder: [
             'game.js',
-            'game.reversi.js',
-            'game.model.js',
             'game.data.js',
+            'game.model.js',
+            'game.reversi.js',
             'FeedbackWidget.js'
         ]
     },

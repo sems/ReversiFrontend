@@ -13,14 +13,12 @@ Game.Model = (function () {
         //aanvraag via Game.Data
         Game.Data.get(url)
             .then(data => {
-                response = data;
-            })
-        //controle of ontvangen data valide is 
-        if (data.value !== 0 || data.value !== 1 || data.value !== 2) {
-            throw new Error("Value out of range!");
-        } else {
-            return data.value;
-        }
+                if (data.value !== 0 || data.value !== 1 || data.value !== 2) {
+                    throw new Error("Value out of range!");
+                } else {
+                    return data;
+                }
+            }) 
     }
 
     const getWeather = function () {

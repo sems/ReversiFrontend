@@ -19,7 +19,8 @@ const Game = (function (url) {
     }
 
     const _getCurrentGameState = function () {
-        gameState = Game.Model.getGameState;
+        //console.log("Get gamestate");
+        stateMap.gameState = Game.Model.getGameState;
     }
 
     // Waarde/object geretourneerd aan de outer scope
