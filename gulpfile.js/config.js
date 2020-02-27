@@ -4,7 +4,15 @@ module.exports = {
         js: [
             'js/**/*.js',
             'js/*.js'
+        ],
+        jsOrder: [
+            'game.js',
+            'game.reversi.js',
+            'game.model.js',
+            'game.data.js',
+            'FeedbackWidget.js'
         ]
     },
+
     voornaam: 'Sem'
 };
