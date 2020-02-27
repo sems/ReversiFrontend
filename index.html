@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript getting started</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+
+    <script src="./js/feedbackWidget.js"></script>
+    <script src="./js/game.js"></script>
+    <script src="./js/game.reversi.js"></script>
+    <script src="./js/game.data.js"></script>
+    <script src="./js/game.model.js"></script>
+</head>
+
+<body>
+    <div id="feedback-success" class="alert" role="alert" style="display:none">
+        <p>Veel succes met deze module!</p>
+    </div>
+    <div id="feedback-danger" class="alert" role="alert" style="display:none">
+        <p>Pas op voor loslopende bits.</p>
+    </div>
+
+    <button class="btn btn-primary btn_ok">OK</button>
+    <button class="btn btn-primary btn_hide">Hide</button>
+    <script>
+        function afterInit() {
+            console.log('Game init voltooid')
+        }
+        $(function(){
+            Game.init(afterInit);
+        })
+    </script>
+</body>
+
+</html>
