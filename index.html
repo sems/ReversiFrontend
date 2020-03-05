@@ -20,11 +20,21 @@
     </script>
 
     <script src="./dist/js/app.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <dialog id="feedback-success" class="alert" role="alert" style="display:none">
-        <p>Veel succes met deze module!</p>
+        <section class="content">
+            <figure class="glyphicon glyphicon-ok"></figure>
+            <p>Veel succes met deze module!</p>
+        </section>
+        <button class="button button--action-close">X</button>
+        <section class="buttons">
+            <button class="button button--state-agree">Akkoord</button>
+            <button class="button button--state-decline ">Weigeren</button>
+        </section>
+        
     </dialog>
     <dialog id="feedback-danger" class="alert" role="alert" style="display:none">
         <p>Pas op voor loslopende bits.</p>
