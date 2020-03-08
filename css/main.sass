@@ -1,48 +1,67 @@
-.alert.alert-show 
-    position: relative
-    padding: 1em
-    min-width: 30%
-    color: black
-    font-family: Arial, Helvetica, sans-serif
-    visibility: visible
-    opacity: 1
-    transition: opacity 3s linear
+.widget 
+    .button--action-close 
+        position: absolute
+        right: 1em
+        top: 1em
+        &:focus 
+            outline: 0
+            background-color: bisque
+    .buttons 
+        display: flex
+        flex-direction: row-reverse
+        .button 
+            border-radius: 0
+            padding: 0.1em 0.6em
+            background-color: antiquewhite
+            margin-left: 1em
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2)
+            &.button--state-agree
+                animation-name: bibber;
+                animation-delay: 2s;
+                animation-fill-mode: forwards;
+                animation-duration: 0.15s;
+                animation-iteration-count: infinite;
+            &:focus 
+                outline: 0
+                background-color: bisque
+    .content 
+        figure 
+            display: inline-block
+            font-size: 3em
+        p 
+            display: inline-block
+            vertical-align: top
+            padding: 0.5em
+            color: steelblue
+    &.widget-hidden
+        opacity: 0
+        height: 0
+        width: auto
+        pointer-events: none
 
-.alert .content figure 
-    display: inline-block
-    font-size: 3em
+        transition: opacity 1s linear
+    &.widget-show
+        z-index: 1
+        opacity: 1
+        height: auto
+        margin: 0 auto
+        transform: translateY(0)
 
+        position: relative
+        padding: 1em
+        width: 80%
+        
+        border-radius: 1em
 
-.alert .content p 
-    display: inline-block
-    vertical-align: top
-    padding: 0.5em
-    color: steelblue
+        color: black
+        font-family: Arial, Helvetica, sans-serif
 
+        transition: opacity 3s linear
+        @media only screen and (min-width: 768px) 
+            width: 30%
+    &.widget-success 
+        background-color: lighten(#92c47c, .6)
 
-.alert .button 
-    border-radius: 0
-    padding: 0.1em 0.6em
-    background-color: antiquewhite
-
-
-.alert .button :focus 
-    outline: 0
-    background-color: bisque
- 
-
-.alert .buttons 
-    display: flex
-    flex-direction: row-reverse
-
-
-.alert .buttons .button 
-    margin-left: 1em
-
-
-.button--action-close 
-    position: absolute
-    right: 1em
-    top: 1em
-
-
+@keyframes bibber 
+    50% 
+        margin-right: 1px;

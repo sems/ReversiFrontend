@@ -1,19 +1,20 @@
 class FeedbackWidget{
-    constructor(elementId){
-        this._element = document.getElementById(elementId);
+    constructor(elementClass){
+        this._element = $('.' + elementClass)
     }
 
     get ElementById(){
-        return this._elementId;
+        return this.element;
     }
 
     show(message, type){
-        this._element.style.display = "block";
+        this._element.removeClass("widget-hidden")
+        this._element.addClass("widget-show")
         this._element.InnerText = message;
         
-        type == "success" 
-        ? this._element.classList.add("alert-success") 
-        : this._element.classList.add("alert-danger");
+        // type == "success" 
+        // ? this._element.classList.add("alert-success") 
+        // : this._element.classList.add("alert-danger");
 
         this.log({
             message: message,
@@ -22,7 +23,8 @@ class FeedbackWidget{
     }
 
     hide(){
-        this._element.style.display = "none";
+        this._element.removeClass("widget-show")
+        this._element.addClass("widget-hidden")
     }
 
     log(message){
@@ -61,16 +63,14 @@ class FeedbackWidget{
 }
 
 $(function() {
-    let s = new FeedbackWidget("feedback-success");
-    let d = new FeedbackWidget("feedback-danger");
+    let s = new FeedbackWidget("widget-success");
+    let d = new FeedbackWidget("widget-danger");
 
     $(".btn_ok").on("click", function(){
         s.show("Hier ben ik!", "success");
-        
     });
     
     $(".btn_hide").on("click", function(){
         s.hide();
-        
     });
 });

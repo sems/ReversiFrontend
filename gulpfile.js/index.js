@@ -15,9 +15,12 @@ const watchFiles = () => {
  
     watch('./css/*.sass', series(sass));
     watch('./css/*.scss', series(sass));
- 
-    watch('./css/*.scss').on('change', browserSync.reload);
-    watch('./css/*.sass').on('change', browserSync.reload);
+    watch('./js/*.js', series(js));
+
+    watch('./dist/css/*.css').on('change', browserSync.reload);
+    watch('./dist/js/**/*.js').on('change', browserSync.reload);
+    
+    watch('./index.html').on('change', browserSync.reload);
  }; 
  
 watchFiles.displayName = 'watch';

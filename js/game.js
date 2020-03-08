@@ -1,7 +1,7 @@
 const apiUrl = '/api/url';
 
 const Game = (function (url) {
-    console.log("hallo, vanuit module Game");
+    console.log("hallo, vanuit module Game!");
 
     //Configuratie en state waarden
     let configMap = {

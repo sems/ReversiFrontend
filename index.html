@@ -24,21 +24,22 @@
 </head>
 
 <body>
-    <dialog id="feedback-success" class="alert" role="alert" style="display:none">
+    <section class="widget widget-success widget-hidden">
         <section class="content">
             <figure class="glyphicon glyphicon-ok"></figure>
             <p>Veel succes met deze module!</p>
         </section>
-        <button class="button button--action-close">X</button>
+        <button class="button button--action-close btn_hide">X</button>
         <section class="buttons">
-            <button class="button button--state-agree">Akkoord</button>
             <button class="button button--state-decline ">Weigeren</button>
+            <button class="button button--state-agree">Akkoord</button>
         </section>
         
-    </dialog>
-    <dialog id="feedback-danger" class="alert" role="alert" style="display:none">
+    </section>
+
+    <!-- <section class="widget widget-danger widget-hidden">
         <p>Pas op voor loslopende bits.</p>
-    </dialog>
+    </section> -->
 
     <button class="btn btn-primary btn_ok">OK</button>
     <button class="btn btn-primary btn_hide">Hide</button>
