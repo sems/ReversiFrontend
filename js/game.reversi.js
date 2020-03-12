@@ -23,10 +23,20 @@ Game.Reversi = (function () {
         }
     }
 
+    const clearBoard = function () {
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                $('.' + 'div_' + i + '_' + j).removeClass("fiche-black");
+                $('.' + 'div_' + i + '_' + j).removeClass("fiche-white");
+            }
+        }
+    }
+
     // Waarde/object geretourneerd aan de outer scope
     return {
         init: privateInit,
-        showFiche: showFiche
+        showFiche: showFiche,
+        clearBoard: clearBoard
     }
 
 })()
