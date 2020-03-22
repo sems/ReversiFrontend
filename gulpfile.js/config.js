@@ -13,6 +13,7 @@ module.exports = {
             'game.data.js',
             'game.model.js',
             'game.reversi.js',
+            'game.template.js',
             'FeedbackWidget.js'
         ],
         vendor: [
@@ -20,8 +21,9 @@ module.exports = {
             'vendor/**/*.js',
         ],
         template: [
-            'templates/**/*.hbs'
-        ]
+            'templates/**/[^_]*.hbs'
+        ],
+        partialFiles: 'templates/**/_*.hbs'
     },
 
     voornaam: 'Sem'

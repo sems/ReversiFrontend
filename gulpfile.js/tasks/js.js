@@ -10,8 +10,10 @@ const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 
 const handlebars = require('gulp-handlebars');
-const wrap = require('gulp-wrap');
+const wrap = require("gulp-wrap");
 const declare = require('gulp-declare');
+const mergeStream = require('merge-stream');
+const path = require('path');
 
 const fn = function (filesJs, filesJsOrder, backendPath) {  
     return function () {  
@@ -72,26 +74,39 @@ const vendor = function (vendorFiles, backendPath){
     }
 }
 
-const templates = function (templateFiles) {
+// Test Partials with:
+//  Handlebars.partials.fiche()
+// Test Templates with:
+//  spa_templates.templates.feedbackWidget.body({bericht: 'Het is een mooie dag'});
+
+
+const templates = function (templateFiles, partialFiles, backendPath ) {
     return function() {
-        return src(templateFiles)
-        // Compile each Handlebars template source file to a template function
+        const templates = src(templateFiles)
             .pipe(handlebars())
-            // Wrap each template function in a call to Handlebars.template
             .pipe(wrap('Handlebars.template(<%= contents %>)'))
-            // Declare template functions as properties and sub-properties of MyApp.templates
             .pipe(declare({
                 namespace: 'spa_templates',
                 noRedeclare: true, // Avoid duplicate declarations
                 processName: function(filePath) {
-                    // Allow nesting based on path using gulp-declare's processNameByPath()
-                    // You can remove this option completely if you aren't using nested folders
-                    // Drop the client/templates/ folder from the namespace path by removing it from the filePath
-                    return declare.processNameByPath(filePath.replace('<parent_map>/templates/', '')); //windows? backslashes: \\
+                    return declare.processNameByPath(filePath.replace('src\\templates\\', ''));
                 }
             }))
+
+        const partials = src([partialFiles])
+            .pipe(handlebars())
+            .pipe(wrap('Handlebars.registerPartial(<%= processPartialName(file.relative) %>, Handlebars.template(<%= contents %>));', {}, {
+                imports: {
+                    processPartialName: function(fileName) {
+                        return JSON.stringify(path.basename(fileName, '.js').substr(1));
+                    }
+                }
+            }));
+
+        return mergeStream(partials, templates)
             .pipe(concat('templates.js'))
-            .pipe(dest('dist/js/'))
+            .pipe(dest('./dist/js/'))
+            .pipe(dest(backendPath + "js/")); 
     }
 }
 

@@ -8,7 +8,7 @@ Game.Reversi = (function () {
 
     // Private function init
     const privateInit = function () {
-        console.log("private init Module");
+        console.log("Game.Template starting...");
     }
 
     const showFiche = function (kleur, x, y) {
