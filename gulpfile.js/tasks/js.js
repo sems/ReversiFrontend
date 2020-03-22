@@ -9,6 +9,10 @@ const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 
+const handlebars = require('gulp-handlebars');
+const wrap = require('gulp-wrap');
+const declare = require('gulp-declare');
+
 const fn = function (filesJs, filesJsOrder, backendPath) {  
     return function () {  
         // console.log(`Taak js is uitgevoerd, ${voornaam}!`);  
@@ -59,6 +63,40 @@ const htmlTask = function (path, backendPath) {
     }
 }
 
+const vendor = function (vendorFiles, backendPath){
+    return function() {
+        return src(vendorFiles)
+        .pipe(concat('vendor.js'))
+        .pipe(dest('./dist/js'))
+        .pipe(dest(backendPath + "js/")); 
+    }
+}
+
+const templates = function (templateFiles) {
+    return function() {
+        return src(templateFiles)
+        // Compile each Handlebars template source file to a template function
+            .pipe(handlebars())
+            // Wrap each template function in a call to Handlebars.template
+            .pipe(wrap('Handlebars.template(<%= contents %>)'))
+            // Declare template functions as properties and sub-properties of MyApp.templates
+            .pipe(declare({
+                namespace: 'spa_templates',
+                noRedeclare: true, // Avoid duplicate declarations
+                processName: function(filePath) {
+                    // Allow nesting based on path using gulp-declare's processNameByPath()
+                    // You can remove this option completely if you aren't using nested folders
+                    // Drop the client/templates/ folder from the namespace path by removing it from the filePath
+                    return declare.processNameByPath(filePath.replace('<parent_map>/templates/', '')); //windows? backslashes: \\
+                }
+            }))
+            .pipe(concat('templates.js'))
+            .pipe(dest('dist/js/'))
+    }
+}
+
 exports.sass = sass; 
 exports.js = fn;  
 exports.htmlTask = htmlTask;
+exports.vendor = vendor;
+exports.templates = templates;

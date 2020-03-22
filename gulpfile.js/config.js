@@ -14,6 +14,13 @@ module.exports = {
             'game.model.js',
             'game.reversi.js',
             'FeedbackWidget.js'
+        ],
+        vendor: [
+            'vendor/*.js',
+            'vendor/**/*.js',
+        ],
+        template: [
+            'templates/**/*.hbs'
         ]
     },
 

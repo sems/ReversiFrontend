@@ -2,9 +2,13 @@ const config = require('./config');
 const {series, parallel, watch} = require('gulp');
 
 const browserSync = require('browser-sync').create();
+
 const js = require('./tasks/js').js(config.files.js, config.files.jsOrder, config.localServerProjectPath);  
 const sass  = require('./tasks/js').sass(config.files.sass, config.localServerProjectPath)
 const htmlTask = require('./tasks/js').htmlTask('./', config.localServerProjectPath);
+
+const vendor = require('./tasks/js').vendor(config.files.vendor, config.localServerProjectPath);
+const templates = require('./tasks/js').templates(config.files.template)
 
 const hello = function (done) {
     console.log(`Groeten van ${config.voornaam}!`)
@@ -32,3 +36,5 @@ exports.js = js;
 exports.sass = sass;
 exports.htmlTask = htmlTask;
 exports.watch = watchFiles;
+exports.vendor = vendor;
+exports.templates = templates;
