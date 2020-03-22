@@ -1,5 +1,5 @@
 module.exports = {
-    localServerProjectPath : '../project_reversi_-_sem_spanhaak_-_s1127151_-_/ReversiRestApi/ReversiRestApi/wwwroot/' ,
+    localServerProjectPath : '../../source/repos/ReversiApp/ReversiApp/wwwroot/' ,
     files: {
         sass: [
             'css/main.sass',
