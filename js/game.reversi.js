@@ -33,7 +33,7 @@ Game.Reversi = (function () {
     }
 
     const showQuote = function() {
-        $('.container').append(Game.Template.parseTemplate("quote", {
+        $('.quote-container').append(Game.Template.parseTemplate("quote", {
             quote: Game.Api.quote
         }))
     }

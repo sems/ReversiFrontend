@@ -6,7 +6,6 @@ Game.Api = (function () {
     const _init = function () {
         Game.Data.getQuoteFromApi().then(d => {
             _configMap.quote = d.en + " - " + d.author;
-            console.log(d.en + " - " + d.author);
         })
     }
 

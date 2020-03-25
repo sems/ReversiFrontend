@@ -21,7 +21,9 @@ const watchFiles = () => {
     watch('./css/*.sass', series(sass));
     watch('./css/*.scss', series(sass));
     watch('./js/*.js', series(js));
+    watch('./index.html', series(htmlTask));
     watch('./templates/**/*.hbs', series(templates));
+    watch('./vendor/**/*.js', series(vendor));
 
     watch('./dist/css/*.css').on('change', browserSync.reload);
 
