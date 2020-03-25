@@ -4,7 +4,8 @@ Game.Data = (function () {
         mock: [{
             url: "api/Spel/Beurt",
             data: 0
-        }]
+        }],
+        quote: ""
     }
 
     let stateMap = {
@@ -22,7 +23,6 @@ Game.Data = (function () {
     }
 
     const getMockData = function (url) {
-        //filter mock data, configMap.mock ... oei oei, moeilijk moeilijk :-)
         const mockData = _configMap.mock;
 
         return new Promise((resolve, reject) => {
@@ -46,8 +46,14 @@ Game.Data = (function () {
         }
     }
 
+    const getQuoteFromApi = function() {
+        let url = "https://programming-quotes-api.herokuapp.com/quotes/random"
+        return $.get(url);
+    }
+
     return {
         init: _init,
-        get: get
+        get: get,
+        getQuoteFromApi: getQuoteFromApi,
     }
 })()

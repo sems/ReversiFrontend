@@ -32,11 +32,17 @@ Game.Reversi = (function () {
         }
     }
 
+    const showQuote = function() {
+        $('.container').append(Game.Template.parseTemplate("quote", {
+            quote: Game.Api.quote
+        }))
+    }
+
     // Waarde/object geretourneerd aan de outer scope
     return {
         init: privateInit,
         showFiche: showFiche,
-        clearBoard: clearBoard
+        clearBoard: clearBoard,
+        showQuote: showQuote
     }
-
 })()

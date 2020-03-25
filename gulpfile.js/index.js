@@ -16,15 +16,15 @@ const hello = function (done) {
 }
 
 const watchFiles = () => {
-    browserSync.init({server: {baseDir: './'}});
+    browserSync.init({server: {baseDir: './dist'}});
  
     watch('./css/*.sass', series(sass));
     watch('./css/*.scss', series(sass));
     watch('./js/*.js', series(js));
+    watch('./templates/**/*.hbs', series(templates));
 
     watch('./dist/css/*.css').on('change', browserSync.reload);
-    watch('./dist/js/**/*.js').on('change', browserSync.reload);
-    
+
     watch('./index.html').on('change', browserSync.reload);
  }; 
  

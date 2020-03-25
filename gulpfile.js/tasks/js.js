@@ -74,12 +74,6 @@ const vendor = function (vendorFiles, backendPath){
     }
 }
 
-// Test Partials with:
-//  Handlebars.partials.fiche()
-// Test Templates with:
-//  spa_templates.templates.feedbackWidget.body({bericht: 'Het is een mooie dag'});
-
-
 const templates = function (templateFiles, partialFiles, backendPath ) {
     return function() {
         const templates = src(templateFiles)

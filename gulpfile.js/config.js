@@ -14,6 +14,7 @@ module.exports = {
             'game.model.js',
             'game.reversi.js',
             'game.template.js',
+            'game.api.js',
             'FeedbackWidget.js'
         ],
         vendor: [

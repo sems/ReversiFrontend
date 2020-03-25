@@ -41,88 +41,22 @@
         <p>Pas op voor loslopende bits.</p>
     </section> -->
     <div class="container">
-        <div class="parent">
-            <div class="fiche-none div_0_0"> </div>
-            <div class="fiche-none div_0_1"> </div>
-            <div class="fiche-none div_0_2"> </div>
-            <div class="fiche-none div_0_3"> </div>
-            <div class="fiche-none div_0_4"> </div>
-            <div class="fiche-none div_0_5"> </div>
-            <div class="fiche-none div_0_6"> </div>
-            <div class="fiche-none div_0_7"> </div>
-            <div class="fiche-none div_1_0"> </div>
-            <div class="fiche-none div_1_1"> </div>
-            <div class="fiche-none div_1_2"> </div>
-            <div class="fiche-none div_1_3"> </div>
-            <div class="fiche-none div_1_4"> </div>
-            <div class="fiche-none div_1_5"> </div>
-            <div class="fiche-none div_1_6"> </div>
-            <div class="fiche-none div_1_7"> </div>
-            <div class="fiche-none div_2_0"> </div>
-            <div class="fiche-none div_2_1"> </div>
-            <div class="fiche-none div_2_2"> </div>
-            <div class="fiche-none div_2_3"> </div>
-            <div class="fiche-none div_2_4"> </div>
-            <div class="fiche-none div_2_5"> </div>
-            <div class="fiche-none div_2_6"> </div>
-            <div class="fiche-none div_2_7"> </div>
-            <div class="fiche-none div_3_0"> </div>
-            <div class="fiche-none div_3_1"> </div>
-            <div class="fiche-none div_3_2"> </div>
-            <div class="fiche-none div_3_3"> </div>
-            <div class="fiche-none div_3_4"> </div>
-            <div class="fiche-none div_3_5"> </div>
-            <div class="fiche-none div_3_6"> </div>
-            <div class="fiche-none div_3_7"> </div>
-            <div class="fiche-none div_4_0"> </div>
-            <div class="fiche-none div_4_1"> </div>
-            <div class="fiche-none div_4_2"> </div>
-            <div class="fiche-none div_4_3"> </div>
-            <div class="fiche-none div_4_4"> </div>
-            <div class="fiche-none div_4_5"> </div>
-            <div class="fiche-none div_4_6"> </div>
-            <div class="fiche-none div_4_7"> </div>
-            <div class="fiche-none div_5_0"> </div>
-            <div class="fiche-none div_5_1"> </div>
-            <div class="fiche-none div_5_2"> </div>
-            <div class="fiche-none div_5_3"> </div>
-            <div class="fiche-none div_5_4"> </div>
-            <div class="fiche-none div_5_5"> </div>
-            <div class="fiche-none div_5_6"> </div>
-            <div class="fiche-none div_5_7"> </div>
-            <div class="fiche-none div_6_0"> </div>
-            <div class="fiche-none div_6_1"> </div>
-            <div class="fiche-none div_6_2"> </div>
-            <div class="fiche-none div_6_3"> </div>
-            <div class="fiche-none div_6_4"> </div>
-            <div class="fiche-none div_6_5"> </div>
-            <div class="fiche-none div_6_6"> </div>
-            <div class="fiche-none div_6_7"> </div>
-            <div class="fiche-none div_7_0"> </div>
-            <div class="fiche-none div_7_1"> </div>
-            <div class="fiche-none div_7_2"> </div>
-            <div class="fiche-none div_7_3"> </div>
-            <div class="fiche-none div_7_4"> </div>
-            <div class="fiche-none div_7_5"> </div>
-            <div class="fiche-none div_7_6"> </div>
-            <div class="fiche-none div_7_7"> </div>
-        </div>
+        
     </div>
     
     <button class="btn btn-primary btn_ok">OK</button>
     <button class="btn btn-primary btn_hide">Hide</button>
-    <script>
+    <script> 
         function afterInit() {
             console.log('Game init voltooid')
         }
+
         $(function(){
             Game.init(afterInit);
         })
-        const hello = function(groet){
-            console.log(`Gegroet: ${groet}`);
-        }
-
-        const groet = 'Gij grootheid van het wilde westen';
+        
+        var table = { row: [0,1,2,3,4,5,6,7], column: [0,1,2,3,4,5,6,7]};
+        $('.container').append(Game.Template.parseTemplate("spel", table))
     </script>
 </body>
 

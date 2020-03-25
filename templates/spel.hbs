@@ -1,0 +1,7 @@
+<div class="parent">
+    {{#each row}}
+        {{#each ../column}}
+            <div class="fiche-none div_{{this}}_{{ @../index}}"></div>
+        {{/each}}
+    {{/each}}
+</div>

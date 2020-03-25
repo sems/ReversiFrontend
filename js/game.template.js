@@ -7,17 +7,17 @@ Game.Template = (function () {
         console.log("Game.Template starting...");
     }
 
-    const getTemplate = function (templateName) {
-         
+    const _getTemplate = function (templateName) {
+        return spa_templates.templates[templateName]
     }
 
-    const parseTemplate = function (templateName, data) {
-        
+    const _parseTemplate = function (templateName, data) {
+        return _getTemplate(templateName)(data)
     }
 
     return {
         init: _init,
-        getTemplate: getTemplate,
-        parseTemplate: parseTemplate
+        getTemplate: _getTemplate,
+        parseTemplate: _parseTemplate,
     }
 })()
