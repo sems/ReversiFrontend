@@ -44,17 +44,17 @@ Game.Stats = (function () {
         return _getChart().data.datasets[_getDatasetIndexByLabel(label)]
     }
 
-    const addDataset = function(dataset) {
-        _getChart().data.datasets.push(dataset);
-        _getChart().update();
-    }
-
     const addDataToDataset = function(label, data) {
         let dataset = _getDatasetByLabel(label)
         dataset.data.push(data)
         _getChart().update();
     }
     
+    const addDataset = function(dataset) {
+        _getChart().data.datasets.push(dataset);
+        _getChart().update();
+    }
+
     const removeDataset = function(label) {
         let datasets = _getDatasets()
         let index = _getDatasetIndexByLabel(label)
