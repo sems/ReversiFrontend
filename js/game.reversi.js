@@ -4,13 +4,17 @@ Game.Reversi = (function () {
     //Configuratie en state waarden
     let _configMap = {
         apiPath: '/api/spel/',
-        idOfGame: 0
+        idOfGame: 0,
+        colour: 0
     }
 
     // Private function init
-    const _init = function (id) {
+    const _init = function (id, colour) {
         console.log("Game.Template starting...")
         _configMap.idOfGame = id
+        _configMap.colour = colour
+        console.log(colour);
+        
         getGameState(id)
     }
 
@@ -100,7 +104,7 @@ Game.Reversi = (function () {
     }
 
     const Move = function (y, x) {
-        $.get(_configMap.apiPath + _configMap.idOfGame + "/" + y + "/" + x)
+        $.get(_configMap.apiPath + _configMap.idOfGame + "/" + y + "/" + x + "/" + _configMap.colour)
         .then((response) => {
             getGameState(_configMap.idOfGame)
         })
