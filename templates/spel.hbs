@@ -1,7 +1,7 @@
 <div class="parent">
     {{#each row}}
         {{#each ../column}}
-            <div class="fiche-none div_{{this}}_{{ @../index}}"></div>
+            <div class="fiche-none div_{{this}}_{{@../index}}" onclick="Game.Reversi.Move({{this}}, {{@../index}})"></div>
         {{/each}}
     {{/each}}
 </div>
