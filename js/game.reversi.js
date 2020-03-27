@@ -66,11 +66,41 @@ Game.Reversi = (function () {
     }
 
     const Move = function (y, x) {
-        $.get(_configMap.apiPath + _configMap.idOfGame + "/" + y + "/" + x + "/" + _configMap.colour)
+        $.post(_configMap.apiPath + _configMap.idOfGame + "/" + y + "/" + x + "/" + _configMap.colour)
         .then((response) => {
             getGameState(_configMap.idOfGame)
         })
+        
+        // let data = {
+        //     x: y,
+        //     y: x,
+        //     colour: _configMap.colour
+        // }
+        
+        // postData(_configMap.apiPath + _configMap.idOfGame, data)
+        // .then((data) => {
+        //     console.log(data);
+            
+        //     getGameState(_configMap.idOfGame)
+        // });
     }
+
+    async function postData(url = '', data = {}) {
+        const response = await fetch(url, {
+          method: 'POST', 
+          mode: 'cors', 
+          cache: 'no-cache',
+          credentials: 'same-origin', 
+          headers: {
+            'Content-Type': 'application/json'
+            
+          },
+          redirect: 'follow', 
+          referrerPolicy: 'no-referrer', 
+          body: JSON.stringify(data) 
+        });
+        return await response.json(); 
+      }
 
     const updateChartData = function(data) {
         // Get most fiches per colour
