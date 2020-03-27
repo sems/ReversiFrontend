@@ -13,8 +13,6 @@ Game.Reversi = (function () {
         console.log("Game.Template starting...")
         _configMap.idOfGame = id
         _configMap.colour = colour
-        console.log(colour);
-        
         getGameState(id)
     }
 
@@ -58,48 +56,12 @@ Game.Reversi = (function () {
                     showFiche(element, i, j)
                 }   
             }
-            // Get most fiches per colour
-            Game.Stats.removeDataset("Aantal zwarte fiches")
-            Game.Stats.removeDataset("Aantal witte fiches")
-            Game.Stats.removeDataset("Totaal aantal fiches")
 
-            let labelRoundArray = []
-            for (let i = 0; i < data.amountOfBlack.length; i++) {
-                labelRoundArray.push(i.toString())       
-            }
-            Game.Stats.setLabels(labelRoundArray)
-
-            let totalFiches = []
-            for (let i = 0; i < labelRoundArray.length; i++) {
-                let fichesInRound = 0;
-
-                fichesInRound+= data.amountOfBlack[i]
-                fichesInRound+= data.amountOfWhite[i]
-                totalFiches.push(fichesInRound.toString())
-
-                fichesInRound = 0;
-            }
+            let myColour = data.aanDeBeurd == 1 ? "Wit" : "Zwart"
+            $(".game_statistics__aandebeurt").text(myColour)
+            $(".game_statistics__round").text(data.beurt)
             
-            let dataOfTotal = {
-                label: "Aantal totale fiches",
-                data: totalFiches,
-                backgroundColor: 'rgba(0, 0, 255, 0.1)'
-            }
-            Game.Stats.addDataset(dataOfTotal)
-
-            let dataOfBlack = {
-                label: "Aantal zwarte fiches",
-                data: data.amountOfBlack,
-                backgroundColor: 'rgba(0, 255, 255, 0.3)'
-            }
-            Game.Stats.addDataset(dataOfBlack)
-            
-            let dataOfWhite = {
-                label: "Aantal witte fiches",
-                data: data.amountOfWhite,
-                backgroundColor: 'rgba(255, 0, 0, 0.3)'
-            }
-            Game.Stats.addDataset(dataOfWhite)
+            updateChartData(data)
         })
     }
 
@@ -110,8 +72,49 @@ Game.Reversi = (function () {
         })
     }
 
-    const updateChartData = function() {
+    const updateChartData = function(data) {
+        // Get most fiches per colour
+        Game.Stats.removeDataset("Aantal zwarte fiches")
+        Game.Stats.removeDataset("Aantal witte fiches")
+        Game.Stats.removeDataset("Totaal aantal fiches")
 
+        let labelRoundArray = []
+        for (let i = 0; i < data.amountOfBlack.length; i++) {
+            labelRoundArray.push(i.toString())       
+        }
+        Game.Stats.setLabels(labelRoundArray)
+
+        let totalFiches = []
+        for (let i = 0; i < labelRoundArray.length; i++) {
+            let fichesInRound = 0;
+
+            fichesInRound+= data.amountOfBlack[i]
+            fichesInRound+= data.amountOfWhite[i]
+            totalFiches.push(fichesInRound.toString())
+
+            fichesInRound = 0;
+        }
+
+        let dataOfTotal = {
+            label: "Aantal totale fiches",
+            data: totalFiches,
+            backgroundColor: 'rgba(0, 0, 255, 0.1)'
+        }
+        Game.Stats.addDataset(dataOfTotal)
+
+        let dataOfBlack = {
+            label: "Aantal zwarte fiches",
+            data: data.amountOfBlack,
+            backgroundColor: 'rgba(0, 255, 255, 0.3)'
+        }
+        Game.Stats.addDataset(dataOfBlack)
+
+        let dataOfWhite = {
+            label: "Aantal witte fiches",
+            data: data.amountOfWhite,
+            backgroundColor: 'rgba(255, 0, 0, 0.3)'
+        }
+        Game.Stats.addDataset(dataOfWhite)
     }
 
     // Waarde/object geretourneerd aan de outer scope
