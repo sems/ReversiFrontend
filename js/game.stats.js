@@ -55,6 +55,11 @@ Game.Stats = (function () {
         _getChart().update();
     }
 
+    const setLabels = function(labels) {
+        _getChart().data.labels = labels
+        _getChart().update
+    }
+
     const removeDataset = function(label) {
         let datasets = _getDatasets()
         let index = _getDatasetIndexByLabel(label)
@@ -96,6 +101,7 @@ Game.Stats = (function () {
         removeDataset: removeDataset,
         setTestData: setTestData,
         addTestData: addTestDataset,
-        addDataToDataset: addDataToDataset
+        addDataToDataset: addDataToDataset,
+        setLabels: setLabels
     }
 })()
