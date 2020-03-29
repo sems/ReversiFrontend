@@ -5,7 +5,8 @@ Game.Reversi = (function () {
     let _configMap = {
         apiPath: '/api/spel/',
         idOfGame: 0,
-        colour: 0
+        colour: 0,
+        interval: null
     }
 
     // Private function init
@@ -66,41 +67,18 @@ Game.Reversi = (function () {
     }
 
     const Move = function (y, x) {
-        $.post(_configMap.apiPath + _configMap.idOfGame + "/" + y + "/" + x + "/" + _configMap.colour)
-        .then((response) => {
+        fetch(_configMap.apiPath + _configMap.idOfGame + '/', { 
+            method: 'POST', 
+            headers: {
+                'Accept': 'application/json', 
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({x: x, y: y, colour: _configMap.colour})
+        }).then((response) => {
             getGameState(_configMap.idOfGame)
+            _configMap.interval = setInterval(getGameState(_configMap.idOfGame), 2000)
         })
-        
-        // let data = {
-        //     x: y,
-        //     y: x,
-        //     colour: _configMap.colour
-        // }
-        
-        // postData(_configMap.apiPath + _configMap.idOfGame, data)
-        // .then((data) => {
-        //     console.log(data);
-            
-        //     getGameState(_configMap.idOfGame)
-        // });
     }
-
-    async function postData(url = '', data = {}) {
-        const response = await fetch(url, {
-          method: 'POST', 
-          mode: 'cors', 
-          cache: 'no-cache',
-          credentials: 'same-origin', 
-          headers: {
-            'Content-Type': 'application/json'
-            
-          },
-          redirect: 'follow', 
-          referrerPolicy: 'no-referrer', 
-          body: JSON.stringify(data) 
-        });
-        return await response.json(); 
-      }
 
     const updateChartData = function(data) {
         // Get most fiches per colour
