@@ -42,7 +42,7 @@ Game.Reversi = (function () {
     }
 
     const showQuote = function() {
-        $('.quote-container').append(Game.Template.parseTemplate("quote", {
+        $('.quote-container').html(Game.Template.parseTemplate("quote", {
             quote: Game.Api.quote
         }))
     }
@@ -76,6 +76,7 @@ Game.Reversi = (function () {
             body: JSON.stringify({x: x, y: y, colour: _configMap.colour})
         }).then((response) => {
             getGameState(_configMap.idOfGame)
+            showQuote()
             _configMap.interval = setInterval(getGameState(_configMap.idOfGame), 2000)
         })
     }
