@@ -4,7 +4,7 @@ Game.Model = (function () {
     }
 
     const _init = function () {
-        console.log("Game.Model starting...");
+        //console.log("Game.Model starting...");
     }
 
     const _getGameState = function (token) {

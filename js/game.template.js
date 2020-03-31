@@ -4,7 +4,7 @@ Game.Template = (function () {
     }
 
     const _init = function () {
-        console.log("Game.Template starting...");
+        //console.log("Game.Template starting...");
     }
 
     const _getTemplate = function (templateName) {

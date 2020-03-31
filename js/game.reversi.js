@@ -1,6 +1,4 @@
 Game.Reversi = (function () {
-    console.log('hallo, vanuit module Reversi')
-
     //Configuratie en state waarden
     let _configMap = {
         apiPath: '/api/spel/',
@@ -11,7 +9,6 @@ Game.Reversi = (function () {
 
     // Private function init
     const _init = function (id, colour) {
-        console.log("Game.Template starting...")
         _configMap.idOfGame = id
         _configMap.colour = colour
         getGameState(id, true)
@@ -86,9 +83,8 @@ Game.Reversi = (function () {
 
             _configMap.interval = setInterval(function(){
                 getGameState(_configMap.idOfGame, false)
-                console.log("update");
             }, 2000)
-        })
+        })   
     }
 
     const updateChartData = function(data) {

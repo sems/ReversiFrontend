@@ -11,7 +11,6 @@ const vendor = require('./tasks/js').vendor(config.files.vendor, config.localSer
 const templates = require('./tasks/js').templates(config.files.template, config.files.partialFiles, config.localServerProjectPath)
 
 const hello = function (done) {
-    console.log(`Groeten van ${config.voornaam}!`)
     done();
 }
 
