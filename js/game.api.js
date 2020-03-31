@@ -4,12 +4,13 @@ Game.Api = (function () {
     }
 
     const _init = function () {
-        Game.Data.getQuoteFromApi().then(d => {
-            _configMap.quote = d.en + " - " + d.author;
-        })
+        
     }
 
     const getQuote = function () {
+        Game.Data.getQuoteFromApi().then(d => {
+            _configMap.quote = d.en + " - " + d.author;
+        })
         return _configMap.quote;
     }
 

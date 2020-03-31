@@ -14,7 +14,7 @@ Game.Reversi = (function () {
         console.log("Game.Template starting...")
         _configMap.idOfGame = id
         _configMap.colour = colour
-        getGameState(id)
+        getGameState(id, true)
     }
 
     const showFiche = function (kleur, y, x) {
@@ -47,7 +47,7 @@ Game.Reversi = (function () {
         }))
     }
 
-    const getGameState = function(id) {
+    const getGameState = function(id, updateChart) {
         $.get(_configMap.apiPath + id)
         .then((data) => {
             let bord = data.bord
@@ -62,7 +62,9 @@ Game.Reversi = (function () {
             $(".game_statistics__aandebeurt").text(myColour)
             $(".game_statistics__round").text(data.beurt)
             
-            updateChartData(data)
+            if(updateChart) {
+                updateChartData(data)
+            }
         })
     }
 
@@ -73,11 +75,19 @@ Game.Reversi = (function () {
                 'Accept': 'application/json', 
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({x: x, y: y, colour: _configMap.colour})
+            body: JSON.stringify({
+                x: x, 
+                y: y, 
+                colour: _configMap.colour
+            })
         }).then((response) => {
-            getGameState(_configMap.idOfGame)
+            getGameState(_configMap.idOfGame, true)
             showQuote()
-            _configMap.interval = setInterval(getGameState(_configMap.idOfGame), 2000)
+
+            _configMap.interval = setInterval(function(){
+                getGameState(_configMap.idOfGame, false)
+                console.log("update");
+            }, 2000)
         })
     }
 
